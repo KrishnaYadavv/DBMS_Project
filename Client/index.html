@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Animated Login</title>
+</head>
+<body>
+
+    <div class="login-container" id="mainBox">
+
+        <div class="login-left">
+            <h1>Simple, Free Investing.</h1>
+            <p>ETFs</p>
+        </div>
+
+        <!-- Admin login form (initially hidden) -->
+        <div class="admin-form" style = "background-color: #f0f0f0;">
+            <h2>Admin Login</h2>
+            <input type="text" placeholder="Admin ID">
+            <div class="password-field">
+                <input type="password" id="admin-password" placeholder="Password">
+                <button class="toggle-password" onclick="togglePasswordVisibility('admin-password')">👁️</button>
+            </div>
+            <button class="login">Login as Admin</button>
+            <label style="margin-top: 10px;">
+                <input type="checkbox" id="User-login"> Continue as User
+            </label>
+        </div>
+
+        <div class="login-right">
+            <h2>Welcome to StrataGem</h2>
+
+            <input type="text" placeholder="Your User ID">
+            <div class="password-field">
+                <input type="password" id="user-password" placeholder="Password">
+                <button class="toggle-password" onclick="togglePasswordVisibility('user-password')">👁️</button>
+            </div>
+            <button class="login">Continue</button>
+
+            <label style="margin-top: 10px;">
+                <input type="checkbox" id="admin-login"> Continue as Administrator
+            </label>
+        </div>
+
+    </div>
+
+<script>
+    const checkbox = document.getElementById("admin-login");
+    const container = document.getElementById("mainBox");
+
+    checkbox.addEventListener("change", () => {
+        if (checkbox.checked){
+            container.classList.add("admin-active");
+            setTimeout(() => {
+                checkbox.checked = false;
+            }, 100);
+        }
+    });
+
+    const userCheckbox = document.getElementById("User-login");
+    userCheckbox.addEventListener("change", () => {
+        if (userCheckbox.checked){
+            container.classList.remove("admin-active");
+            setTimeout(() => {
+                userCheckbox.checked = false;
+            }, 100);
+        } 
+    });
+
+    function togglePasswordVisibility(passwordFieldId) {
+        const passwordField = document.getElementById(passwordFieldId);
+        if (passwordField.type === 'password') {
+            passwordField.type = 'text';
+        } else {
+            passwordField.type = 'password';
+        }
+    }
+</script>
+
+</body>
+</html>
